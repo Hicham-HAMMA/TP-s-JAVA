@@ -3,6 +3,8 @@ package cigma.pfe.contollers;
 import cigma.pfe.services.ClientService;
 import cigma.pfe.models.Client;
 
+import java.util.List;
+
 public class ClientController {
 
 
@@ -38,5 +40,17 @@ public class ClientController {
         return clientService.save(c);
     } public ClientController() {
         System.out.println("Call ClientController ....");
+    }
+    public void modify(Client c){
+        clientService.modify(c);
+    }
+    public void removeById(long id){
+        clientService.removeById(id);
+    }
+    public Client getById(long id){
+        return clientService.getById(id);
+    }
+    public List<Client> getAll(){
+       return clientService.getAll();
     }
 }

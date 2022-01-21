@@ -20,6 +20,12 @@ public class Client {
     } @
             Column
     private String name;
+
+    public Client(int id, String name) {
+        this.id=id;
+        this.name=name;
+    }
+
     @Override
     public String toString() {
         return "Client{" +

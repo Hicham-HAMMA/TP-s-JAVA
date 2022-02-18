@@ -2,58 +2,50 @@
 package cigma.pfe.repositories;
 
 import cigma.pfe.models.Client;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 public class ClientRepositoryImpl implements ClientRepository{
-            EntityManagerFactory emf=
-            Persistence.createEntityManagerFactory("unit_clients");
-            EntityManager em=emf.createEntityManager();
-    @Override
-    public boolean save(Client c) {
-        em.getTransaction().begin();
+    @PersistenceContext
+    private EntityManager em;
+
+    @Transactional
+    public Client save(Client c) {
         em.persist(c);
-        em.getTransaction().commit();
-        System.out.println("DAO Layer : ClientRepositoryImpl Level");
-        return true;
-        }
-
-    @Override
-    public Client update(Client c) {
         return null;
+
     }
+    @Transactional
+    public Client update(Client c) {
 
+        Client currentClient = em.find(Client.class,c.getId());
+        currentClient.setName(c.getName());
+        em.persist(currentClient);
 
-    public ClientRepositoryImpl() {
-        System.out.println("Call ClientRepositoryImpl ....");
+        return null ;
     }
-
-    private ClientRepositoryImpl repository;
-    public void setRepository(ClientRepositoryImpl repository) {
-        this.repository = repository;
-    }
-
-
-    public Client modify(Client c) {
-        return repository.update(c);
-    }
-    @Override
+    @Transactional
     public void deleteById(long idClient) {
-        em.getTransaction().begin();
         Client clientInDataBase = em.find(Client.class,idClient);
         em.remove(clientInDataBase);
-        em.getTransaction().commit();
+
     }
-    @Override
+
     public Client findById(long idClient) {
         return em.find(Client.class,idClient);
     }
 
-    @Override
     public List<Client> findAll() {
-        List<Client> ListClient = em.createQuery("select e from TClients e").getResultList();
+        List<Client> ListClient = em.createQuery("select e from Client e").getResultList();
         return ListClient;
+    }
+
+    public ClientRepositoryImpl() {
+        System.out.println("Call ClientRepositoryImpl ....");
     }
 }

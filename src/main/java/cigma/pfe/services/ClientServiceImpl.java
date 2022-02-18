@@ -3,44 +3,48 @@ package cigma.pfe.services;
 
 import cigma.pfe.models.Client;
 import cigma.pfe.repositories.ClientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+@Service
+@Transactional
 public class ClientServiceImpl implements ClientService{
-    ClientRepository clientRepository ;
+
+    @Autowired
+    private ClientRepository clientRepository ;
+
     public ClientServiceImpl(ClientRepository clientRepository) {
-        System.out.println("Call ClientServiceImpl with ClientRepository param....");
+        System.out.println("call setter par Service IMPL par Constructor");
         this.clientRepository = clientRepository;
     }
 
-    public void setClientRepository(ClientRepository clientRepository) {
-        this.clientRepository = clientRepository;
-    }
 
-    //ClientRepository clientRepository = new ClientRepositoryImpl();
-    @Override
-    public boolean save(Client c) {
+
+    public Client save(Client c) {
         System.out.println("Service Layer : ClientServiceImpl Level... ");
         return clientRepository.save(c);
-        }
-    public ClientServiceImpl() {
-        System.out.println("Call ClientServiceImpl ....");
     }
-    @Override
+
     public Client modify(Client c) {
         return clientRepository.update(c);
     }
-    @Override
+
     public void removeById(long id) {
         clientRepository.deleteById(id);
     }
-    @Override
+
     public Client getById(long id) {
         return clientRepository.findById(id);
     }
 
-    @Override
     public List<Client> getAll() {
         return clientRepository.findAll();
+    }
+
+
+    public ClientServiceImpl() {
+        System.out.println("Call ClientServiceImpl ....");
     }
 }

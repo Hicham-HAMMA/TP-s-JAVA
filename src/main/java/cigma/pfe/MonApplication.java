@@ -3,6 +3,8 @@ package cigma.pfe;
 import cigma.pfe.contollers.ClientController;
 import cigma.pfe.models.CarteFidelio;
 import cigma.pfe.models.Client;
+import cigma.pfe.models.ClientNormal;
+import cigma.pfe.models.ClientVip;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -22,10 +24,8 @@ public class MonApplication {
                 context.getBean("controller"); // controller est l'id dans le fichier Spring.xml
 
         Client client = new Client("ALAMI");
-        //List<Promotion> promotions=Arrays.asList(new Promotion("remise 10%"),new Promotion("solde 40%"));
-        CarteFidelio carteFidelio = new CarteFidelio("A29930489");
-        carteFidelio.setClient(client);
-        client.setCarteFidelio(carteFidelio);
+
+
         ctrl.save(client);
         // Test save use case for three clients
         ctrl.save(new Client("OMAR"));
@@ -47,5 +47,11 @@ public class MonApplication {
         ftrl.delete(1);
         ftrl.update(new Facture(new Date(2002,06,28),40));
         */
+
+        ClientController ctrl1 = (ClientController) context.getBean("ctrl");
+
+        ctrl1.save(new Client("HAMMA"));
+        ctrl1.save(new ClientVip("HAMMA","Preferences"));
+        ctrl1.save(new ClientNormal("HAMMA",2));
     }
 }

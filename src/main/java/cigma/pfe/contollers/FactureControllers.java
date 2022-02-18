@@ -7,7 +7,7 @@ import java.util.List;
 
 public class FactureControllers {
     FactureService factureService;
-    public FactureController(FactureService factureService) {
+    public void  FactureController(FactureService factureService) {
         this.factureService = factureService;
     }
     public void setFactureService(FactureService factureService) {

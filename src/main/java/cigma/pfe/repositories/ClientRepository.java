@@ -6,7 +6,7 @@ import java.util.List;
 
 
 public interface ClientRepository {
-    boolean save(Client c);
+    Client save(Client c);
     Client update(Client c);
     void deleteById(long idClient);
     Client findById(long idClient);

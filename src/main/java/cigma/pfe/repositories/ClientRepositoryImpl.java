@@ -2,6 +2,7 @@
 package cigma.pfe.repositories;
 
 import cigma.pfe.models.Client;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -10,7 +11,11 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-public class ClientRepositoryImpl implements ClientRepository{
+@Repository
+public class ClientRepositoryImpl implements  ClientRepository {
+
+
+
     @PersistenceContext
     private EntityManager em;
 
@@ -48,4 +53,4 @@ public class ClientRepositoryImpl implements ClientRepository{
     public ClientRepositoryImpl() {
         System.out.println("Call ClientRepositoryImpl ....");
     }
-}
+    }

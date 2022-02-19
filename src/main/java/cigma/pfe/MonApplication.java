@@ -1,7 +1,7 @@
 package cigma.pfe;
 
 import cigma.pfe.contollers.ClientController;
-import cigma.pfe.models.CarteFidelio;
+//import cigma.pfe.models.CarteFidelio;
 import cigma.pfe.models.Client;
 import cigma.pfe.models.ClientNormal;
 import cigma.pfe.models.ClientVip;
@@ -18,15 +18,14 @@ public class MonApplication {
         Client client =new Client(1L,"testing");
         ctrl1.save(client);*/
 
-        ApplicationContext context = new
-                ClassPathXmlApplicationContext("spring.xml");
-        ClientController ctrl = (ClientController)
-                context.getBean("controller"); // controller est l'id dans le fichier Spring.xml
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+        /*
+        ClientController ctrl = (ClientController) context.getBean("ctrl"); // controller est l'id dans le fichier Spring.xml
 
-        Client client = new Client("ALAMI");
+        //Client client = new Client("ALAMI");
 
 
-        ctrl.save(client);
+       // ctrl.save(client);
         // Test save use case for three clients
         ctrl.save(new Client("OMAR"));
         ctrl.save(new Client("SIHAM"));
@@ -39,6 +38,8 @@ public class MonApplication {
         // Test find use case for client with id==1
         Client found = ctrl.getById(1L);
         ctrl.getAll();
+
+        */
         //FACTURES
        /*
         FactureController ftrl = (FactureController) context.getBean("fcontroller");
@@ -51,7 +52,8 @@ public class MonApplication {
         ClientController ctrl1 = (ClientController) context.getBean("ctrl");
 
         ctrl1.save(new Client("HAMMA"));
-        ctrl1.save(new ClientVip("HAMMA","Preferences"));
-        ctrl1.save(new ClientNormal("HAMMA",2));
+        ctrl1.save(new ClientVip("HAMMA1","Preferences"));
+        ctrl1.save(new ClientNormal("HAMMA2",2));
+        //ctrl1.removeById(3l);
     }
 }

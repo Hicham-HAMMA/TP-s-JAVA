@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 @Entity
 @Data
 //@PrimaryKeyJoinColumn(name ="vip_id")
-public class ClientVip extends Client {
+public class ClientVip extends Client{
     private String preferences;
 
     public ClientVip(String name, String preferences) {

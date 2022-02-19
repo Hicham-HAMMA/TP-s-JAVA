@@ -7,46 +7,41 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 
-    @Entity(name = "Tclients")
-    @Data
+@Entity
+@Data
 
-    @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 //@DiscriminatorColumn(name="client_type")
 //@DiscriminatorValue("client")
-    public class Client {
-        @Id
-        @GeneratedValue(strategy = GenerationType.TABLE)
-        public long id;
+public class Client {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public long id;
 
-        @Column
-        public String name;
+    @Column
+    public String name;
 
-        public Client(String name) {
-            this.name = name;
-        }
+    public Client(String name) {
+        this.name = name;
+    }
 
 
-        public Client() {
-        }
+    public Client() {
+    }
 
-        public Client(long id, String name) {
-            this.id = id;
-            this.name = name;
-        }
+    public long getId() {
+        return id;
+    }
 
-        public long getId() {
-            return id;
-        }
+    public void setId(long id) {
+        this.id = id;
+    }
 
-        public void setId(long id) {
-            this.id = id;
-        }
+    public String getName() {
+        return name;
+    }
 
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
+    public void setName(String name) {
+        this.name = name;
+    }
 }

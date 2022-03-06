@@ -11,4 +11,6 @@ public interface ClientService {
     void removeById(long id);
     Client getById(long id);
     List<Client> getAll();
+    List<Client> findByNameS(String name);
+
 }

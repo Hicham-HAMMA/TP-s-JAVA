@@ -9,42 +9,44 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 @Service
-@Transactional
+
 public class ClientServiceImpl implements ClientService{
 
     @Autowired
     private ClientRepository clientRepository ;
 
     public ClientServiceImpl(ClientRepository clientRepository) {
-        System.out.println("call setter par Service IMPL par Constructor");
         this.clientRepository = clientRepository;
     }
 
-
-
+    @Transactional
     public Client save(Client c) {
         System.out.println("Service Layer : ClientServiceImpl Level... ");
         return clientRepository.save(c);
     }
 
+    @Transactional
     public Client modify(Client c) {
-        return clientRepository.update(c);
+        return null;
     }
 
+    @Transactional
     public void removeById(long id) {
         clientRepository.deleteById(id);
     }
 
+    @Transactional
     public Client getById(long id) {
-        return clientRepository.findById(id);
+        return clientRepository.findById(id).get();
     }
 
+    @Transactional
     public List<Client> getAll() {
-        return clientRepository.findAll();
+        return (List<Client>) clientRepository.findAll();
     }
+    public List<Client> findByNameS(String nom) {
+        return (List<Client>) clientRepository.findByName(nom);
 
-
-    public ClientServiceImpl() {
-        System.out.println("Call ClientServiceImpl ....");
     }
+    
 }
